@@ -44,28 +44,46 @@
 // })
 
 
-const thirdPromise= ()=>{
-    return new Promise((resolve, reject) => {
-        const randNumb=Math.random();
-        if (randNumb>=0.5) {
-            resolve([randNumb,'grater']);
-        }else{
-            reject([randNumb,"lower"]);
-        }
-    })
-}
+// const thirdPromise= ()=>{
+//     return new Promise((resolve, reject) => {
+//         const randNumb=Math.random();
+//         if (randNumb>=0.5) {
+//             resolve([randNumb,'grater']);
+//         }else{
+//             reject([randNumb,"lower"]);
+//         }
+//     })
+// }
 
 
-async function dodo(){
-    try{
-        let result = await thirdPromise();
-        console.log(`the number is ${result[0] }and it is ${result[1]} then equal to 0.5`);
-    }catch(result){
-        console.log(`the number is ${result[0] }and it is ${result[1]} then 0.5`);
+// async function dodo(){
+//     try{
+//         let result = await thirdPromise();
+//         console.log(`the number is ${result[0] }and it is ${result[1]} then equal to 0.5`);
+//     }catch(result){
+//         console.log(`the number is ${result[0] }and it is ${result[1]} then 0.5`);
+//     }
+// }
+
+// dodo();
+// for (let i=0;i<10000;i++){
+//     console.log(i);
+// }
+
+
+async function fetchData(){
+    try {
+        const response=await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    if (!response.ok) {
+        console.log("network response is not ok");
     }
+    const data=await response.json();
+    console.log(data);
+
+    }catch(e){
+        console.log("Error",e);
+    }
+
 }
 
-dodo();
-for (let i=0;i<10000;i++){
-    console.log(i);
-}
+fetchData();
