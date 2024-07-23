@@ -22,23 +22,50 @@
 
 
 
-const secondPromise=(msg)=>{
+// const secondPromise=(msg)=>{
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//         resolve(msg);
+//         },1000)
+//     })
+// }
+
+// secondPromise('hihi').then((resolve) => {
+//     console.log(resolve);
+//     return secondPromise("hihi2");
+// }).then((result) => {
+//     console.log(result);
+//     return secondPromise("hihi3");
+// }).then((result) => {
+//     console.log(result);
+//     return secondPromise("completed!");
+// }).then((result) => {
+//     console.log(result);
+// })
+
+
+const thirdPromise= ()=>{
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-        resolve(msg);
-        },1000)
+        const randNumb=Math.random();
+        if (randNumb>=0.5) {
+            resolve([randNumb,'grater']);
+        }else{
+            reject([randNumb,"lower"]);
+        }
     })
 }
 
-secondPromise('hihi').then((resolve) => {
-    console.log(resolve);
-    return secondPromise("hihi2");
-}).then((result) => {
-    console.log(result);
-    return secondPromise("hihi3");
-}).then((result) => {
-    console.log(result);
-    return secondPromise("completed!");
-}).then((result) => {
-    console.log(result);
-})
+
+async function dodo(){
+    try{
+        let result = await thirdPromise();
+        console.log(`the number is ${result[0] }and it is ${result[1]} then equal to 0.5`);
+    }catch(result){
+        console.log(`the number is ${result[0] }and it is ${result[1]} then 0.5`);
+    }
+}
+
+dodo();
+for (let i=0;i<10000;i++){
+    console.log(i);
+}
