@@ -1,3 +1,4 @@
+
 // const firstPromise=new Promise((resolve, reject)=>{
 //     const randomNum=Math.random();
 //     console.log(randomNum);
@@ -19,38 +20,25 @@
 // })
 
 
-// const secondPromise=(msg, time)=>{
-//     return new Promise((resolve,reject)=>{
-//         setTimeout((msg)=>{
-//             resolve(msg);
-//         },time)
-//     })
-// }
-
-// secondPromise("hihi1",1000).then((resolve)=>{
-//     console.log(resolve);
-//     return secondPromise("hihi2",1000)
-// }).then((resolve)=>{
-//     console.log(resolve);
-//     return secondPromise("hihi3",1000)
-// })
 
 
-const myPromise = () => {
+const secondPromise=(msg)=>{
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve("Promise resolved!");
-        }, 1000);
-    });
-};
+        resolve(msg);
+        },1000)
+    })
+}
 
-const asyncFunction = async () => {
-    try {
-        const result = await myPromise();
-        console.log(result); // Logs: "Promise resolved!" after 1 second
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-asyncFunction();
+secondPromise('hihi').then((resolve) => {
+    console.log(resolve);
+    return secondPromise("hihi2");
+}).then((result) => {
+    console.log(result);
+    return secondPromise("hihi3");
+}).then((result) => {
+    console.log(result);
+    return secondPromise("completed!");
+}).then((result) => {
+    console.log(result);
+})
